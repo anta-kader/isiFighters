@@ -62,8 +62,8 @@ public class Partie {
 		}
 	}
 	
-	public void setCoupComp(){
-		this.code_coup_computer = (int) (1 + Math.random() * 8); 
+	public int getCoupComp(){
+		return (int) (1 + Math.random() * 8); 
 	}
 	
 	public void action(int actionH, int actionC){
@@ -123,10 +123,12 @@ public class Partie {
 					break;
 				case 5 :
 					this.computer.concentration = true;
+					this.computer.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
 					this.human.recvoirCoup();
+					this.computer.reussirAction();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
@@ -137,6 +139,7 @@ public class Partie {
 				case 9 :
 					this.computer.attaque();
 					this.human.recvoirCoup();
+					this.computer.reussirAction();
 					break;
 			}
 			break;
@@ -153,35 +156,48 @@ public class Partie {
 					break;
 				case 3 :
 					this.computer.attaque();	
+					this.computer.reussirAction();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
 					break;
 				case 5 :
-					this.computer.concentration = true;
+					//this.computer.concentration = true;
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.computer.reussirAction();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
 					break;
 				case 8 :
 					this.computer.esquive();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.computer.reussirAction();
 					this.computer.recvoirCoup();
+					this.human.reussirAction();
+					this.human.recvoirCoup();
 					break;
 			}
 			break;
-		case 4 :
+		case 4 ://abdomen
 			this.human.bloquerAttaque();
 			switch (actionC){
 				case 1 :
@@ -191,16 +207,20 @@ public class Partie {
 					this.computer.esquive();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
 					break;
 				case 5 :
 					this.computer.concentration = true;
+					this.computer.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.human.reussirAction();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
@@ -210,74 +230,114 @@ public class Partie {
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 			}
 			break;
-		case 5 :
+		case 5 ://concentration
 			this.human.concentration = true;
 			switch (actionC){
 				case 1 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
 					break;
 				case 2 :
 					this.computer.esquive();
+					this.human.reussirAction();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();	
+					this.human.concentration = false;
+					this.human.recvoirCoup();
+					this.computer.reussirAction();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
 					break;
 				case 5 :
 					this.computer.concentration = true;
+					this.computer.reussirAction();
+					this.human.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.human.concentration = false;
+					this.human.recvoirCoup();
+					this.computer.reussirAction();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
 					break;
 				case 8 :
 					this.computer.esquive();
+					this.human.reussirAction();
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.human.concentration = false;
+					this.human.recvoirCoup();
+					this.computer.reussirAction();
 					break;
 			}
 			break;
-		case 6 : 
+		case 6 : //attaquee abdomen
 			this.human.attaque();
 			switch (actionC){
 				case 1 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 2 :
 					this.computer.esquive();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
+					this.computer.reussirAction();
 					break;
 				case 5 :
-					this.computer.concentration = true;
+					this.computer.concentration = false;
+					this.computer.recvoirCoup();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 8 :
 					this.computer.esquive();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 			}
 			break;
-		case 7 :
+		case 7 : //bloquer jambes
 			this.human.bloquerAttaque();
 			switch (actionC){
 				case 1 :
@@ -287,16 +347,21 @@ public class Partie {
 					this.computer.esquive();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
 					break;
 				case 5 :
 					this.computer.concentration = true;
+					this.computer.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
@@ -306,10 +371,11 @@ public class Partie {
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.human.reussirAction();
 					break;
 			}
 			break;
-		case 8 :
+		case 8 : //esquive haut
 			this.human.esquive();
 			switch (actionC){
 				case 1 :
@@ -319,16 +385,21 @@ public class Partie {
 					this.computer.esquive();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
 					break;
 				case 5 :
 					this.computer.concentration = true;
+					this.computer.reussirAction();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
@@ -338,38 +409,60 @@ public class Partie {
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.human.reussirAction();
 					break;
 			}
 			break;
-		case 9 : 
+		case 9 : //attaque jambe
 			this.human.attaque();
 			switch (actionC){
 				case 1 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 2 :
 					this.computer.esquive();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 3 :
-					this.computer.attaque();					
+					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
 					break;
 				case 4 :
 					this.computer.bloquerAttaque();
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 5 :
-					this.computer.concentration = true;
+					this.computer.concentration = false;
+					this.human.reussirAction();
+					this.computer.recvoirCoup();
 					break;
 				case 6 :
 					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
+					this.computer.recvoirCoup();
 					break;
 				case 7 :
 					this.computer.bloquerAttaque();
+					this.computer.reussirAction();
 					break;
 				case 8 :
 					this.computer.esquive();
+					this.computer.reussirAction();
 					break;
 				case 9 :
 					this.computer.attaque();
+					this.human.reussirAction();
+					this.computer.reussirAction();
+					this.human.recvoirCoup();
+					this.computer.recvoirCoup();
 					break;
 			}
 			break;
